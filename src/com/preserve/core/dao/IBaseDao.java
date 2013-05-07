@@ -8,7 +8,7 @@ public interface IBaseDao<M> {
 	
 	public Object update(M model);
 	
-	public void delete(Object id);
+	public void delete(M model);
 	
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate();
 }

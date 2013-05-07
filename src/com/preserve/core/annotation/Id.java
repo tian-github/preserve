@@ -13,4 +13,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Id {
 	String name();
+
+	int IDStrategy() default IDStrategy.IN_CREMENT;// 默认自增长
 }

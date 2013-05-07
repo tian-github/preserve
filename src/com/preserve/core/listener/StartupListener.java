@@ -47,6 +47,8 @@ public class StartupListener implements ServletContextListener {
 	@Override
     public void contextInitialized(ServletContextEvent sce) {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
+        
+        
 //        appDao = ctx.getBean(AppDao.class);
 //        tagDao = ctx.getBean(TagDao.class);
 //        appCache = ctx.getBean("appCache", Map.class);

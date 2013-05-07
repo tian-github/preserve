@@ -18,6 +18,13 @@
 		<param-value>preserve.root</param-value>
 	</context-param>
 	
+	<!-- 设置容器版本 -->
+	<context-param>
+		<param-name>context-version</param-name>
+		<param-value>1.0</param-value>
+	</context-param>
+	
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-context.xml</param-value>
@@ -27,9 +34,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!-- <listener>
-		<listener-class>net.noday.core.listener.StartupListener</listener-class>
-	</listener> -->
+	 <listener>
+		<listener-class>com.preserve.core.listener.StartupListener</listener-class>
+	</listener> 
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
