@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.preserve.test.model.User;
-import com.preserve.test.service.UserService;
+import com.preserve.test.service.impl.UserService;
 
 @Controller
 @RequestMapping("/user")

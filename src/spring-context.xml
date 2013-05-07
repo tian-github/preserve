@@ -75,7 +75,7 @@
 	</tx:advice>
 	
 	<aop:config proxy-target-class="true">
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.preserve..service..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.preserve..service.impl..*.*(..))" />
 	</aop:config>
 	
 	

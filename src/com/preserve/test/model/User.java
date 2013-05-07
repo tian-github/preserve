@@ -6,10 +6,10 @@ import com.preserve.core.annotation.Id;
 import com.preserve.core.annotation.Table;
 import com.preserve.core.model.BaseModel;
 
-@Table(name = "tb_user")
+@Table(name = "user")
 public class User extends BaseModel {
 
-	@Id(name = "user_id",IDStrategy=IDStrategy.ASSIGNED)
+	@Id(name = "user_id",IDStrategy=IDStrategy.IN_CREMENT)
 	private String userId;
 	@Column(name = "name")
 	private String name;

@@ -1,4 +1,4 @@
-package com.preserve.test.service;
+package com.preserve.test.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,19 +8,19 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.preserve.test.dao.UserDao;
+import com.preserve.core.service.impl.BaseServieImpl;
+import com.preserve.test.dao.IUserDao;
 import com.preserve.test.model.User;
+import com.preserve.test.service.IUserService;
 
 @Service(value="userService")
-public class UserService {
+public class UserService extends BaseServieImpl<User> implements IUserService {
 	
 	@Resource(name="userDao")
-	private UserDao userDao ;
+	private IUserDao userDao ;
 	
 	public void save(User u){
-		
 		userDao.save(u);
-		
 	}
 	
 	public boolean login(User u){
@@ -39,5 +39,8 @@ public class UserService {
 		}
 		return false;
 	}
+
+
+
 
 }

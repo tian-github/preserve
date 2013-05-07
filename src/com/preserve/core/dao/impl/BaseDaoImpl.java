@@ -17,12 +17,6 @@ public abstract class BaseDaoImpl<M> implements IBaseDao<M> {
 	
 	public abstract Class<M> getModelClass();
 	
-	public abstract String getInsertSQL();
-	
-	public abstract String getUpdateSQL();
-	
-	public abstract String getDeleteSQL();
-	
 	public Object save(M model) {
 		
 		String inserSql=GeneralSQLBuilder.getInsertSQL(model.getClass());
