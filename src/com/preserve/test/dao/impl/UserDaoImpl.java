@@ -19,6 +19,13 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 
 	@Resource(name = "namedJdbcTemplate")
 	private NamedParameterJdbcTemplate namedJdbc;
+	
+	@Override
+	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
+		// TODO Auto-generated method stub
+		return namedJdbc;
+	}
+	
 
 	public int delete(Object id ){
 		
@@ -37,11 +44,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 	}
 
 
-	@Override
-	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
-		// TODO Auto-generated method stub
-		return namedJdbc;
-	}
+	
 
 	@Override
 	public Class<User> getModelClass() {

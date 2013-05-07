@@ -1,17 +1,11 @@
 package com.preserve.core.dao.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.preserve.core.annotation.Table;
 import com.preserve.core.dao.IBaseDao;
 import com.preserve.core.utils.GeneralSQLBuilder;
-import com.preserve.core.vo.ModelInfo;
 
 public abstract class BaseDaoImpl<M> implements IBaseDao<M> {
 	

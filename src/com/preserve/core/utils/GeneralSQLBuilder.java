@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.preserve.blog.model.Posts;
 import com.preserve.core.annotation.Column;
 import com.preserve.core.annotation.IDStrategy;
 import com.preserve.core.annotation.Id;
@@ -189,6 +190,15 @@ public class GeneralSQLBuilder {
 						mf.addFieldMapping(f_name, name);
 					}
 				}
+				
+				if(!(f.isAnnotationPresent(Column.class)||f.isAnnotationPresent(Id.class)))
+				{
+					String name = parseHump(f_name);
+					if (!mf.getFieldMappings().containsKey(f_name)) {
+						mf.addFieldMapping(f_name, name);
+					}
+				}
+				
 			}
 			clazz = clazz.getSuperclass();
 
@@ -225,10 +235,10 @@ public class GeneralSQLBuilder {
 
 		System.out.println(parseHump("GeneralSql"));
 
-		ModelInfo mf = parseModelInfo(User.class);
+		ModelInfo mf = parseModelInfo(Posts.class);
 		System.out.println(mf);
 
-		System.out.println(getInsertSQL(User.class));
+		System.out.println(getInsertSQL(Posts.class));
 
 		// System.out.println(Character.toLowerCase('1'));
 		// System.out.println((int)'a');
