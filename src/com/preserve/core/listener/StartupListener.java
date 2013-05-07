@@ -15,8 +15,6 @@
  */
 package com.preserve.core.listener;
 
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -24,6 +22,10 @@ import javax.servlet.ServletContextListener;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.preserve.core.utils.spring.SpringBeanUtil;
+import com.preserve.test.model.User;
+import com.preserve.test.service.impl.UserService;
 
 /**
  * cat StartupListener
@@ -38,7 +40,6 @@ public class StartupListener implements ServletContextListener {
 
     private ServletContext context;
     private ApplicationContext ctx;
-    private Map<String, Object> appCache;
     
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
@@ -47,7 +48,11 @@ public class StartupListener implements ServletContextListener {
 	@Override
     public void contextInitialized(ServletContextEvent sce) {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
-        
+//        UserService service=(UserService)ctx.getBean("userService");
+//        User u =new User();
+//        u.setName("test1");
+//        u.setPwd("12312");
+//        service.save(u);
         
 //        appDao = ctx.getBean(AppDao.class);
 //        tagDao = ctx.getBean(TagDao.class);
@@ -58,15 +63,6 @@ public class StartupListener implements ServletContextListener {
 //        loadSkins();
         setWebProperty();
     }
-	
-//	private void loadAppConfig() {
-//		appCache.put("cfg", cfg = appDao.getAppConfig());// TODO cfg应该改个名app
-//		// TODO 正在想更好的实现方式[将cfg加入spring容器，不行就放到spring管理的bean里或cache
-//	}
-//	
-//	private void loadTags() {
-//		appCache.put("tags", new HashSet<Tag>(tagDao.findAllTag()));
-//	}
 	
 	
     private void setWebProperty() {

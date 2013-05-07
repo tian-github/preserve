@@ -13,7 +13,7 @@ public class User extends BaseModel {
 	private String userId;
 	@Column(name = "name")
 	private String name;
-	@Column(name = "pas")
+	@Column(name = "pwd")
 	private String pwd;
 
 	public String getUserId() {
