@@ -436,8 +436,8 @@ public class GeneralSQLBuilder {
 	}
 
 	public static void main(String[] args) {
-			double s=808.27+23.95+40;
-			System.out.println(s);
+//			double s=808.27+23.95+40;
+//			System.out.println(s);
 		
 		Set<Class<?>> clazzs=	getClasses("com.preserve.blog.model");
 		StringBuffer buffer=new StringBuffer();
