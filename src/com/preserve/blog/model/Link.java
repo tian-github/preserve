@@ -108,20 +108,16 @@ public class Link extends BaseModel {
 	/**
 	 * 创建者
 	 */
-	protected Users docCreator;
-	
-	/**
-	 * @return 创建者
-	 */
-	public Users getDocCreator() {
-		return docCreator;
+	protected int linkCreator;
+
+	public int getLinkCreator() {
+		return linkCreator;
+	}
+
+	public void setLinkCreator(int linkCreator) {
+		this.linkCreator = linkCreator;
 	}
 	
-	/**
-	 * @param docCreator 创建者
-	 */
-	public void setDocCreator(Users docCreator) {
-		this.docCreator = docCreator;
-	}
+
 	
 }

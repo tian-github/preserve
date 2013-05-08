@@ -34,22 +34,17 @@ public class Category extends BaseModel {
 	/**
 	 * 创建时间
 	 */
-	protected Date docCreateTime;
+	protected Date createTime;
 	
-	/**
-	 * @return 创建时间
-	 */
-	public Date getDocCreateTime() {
-		return docCreateTime;
+	
+	public Date getCreateTime() {
+		return createTime;
 	}
-	
-	/**
-	 * @param docCreateTime 创建时间
-	 */
-	public void setDocCreateTime(Date docCreateTime) {
-		this.docCreateTime = docCreateTime;
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	
+
 	/**
 	 * 名称
 	 */
@@ -68,5 +63,10 @@ public class Category extends BaseModel {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * 创建者
+	 */
+	protected int creator;
 	
 }
