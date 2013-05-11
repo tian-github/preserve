@@ -165,7 +165,7 @@
         
     -->
     <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
-        <q>主页portlet测试 <b>redirect/jsp?p_jsp=test/test</b> </q>
+        <q><b><a href="${PRESERVE_CONTEXTPATH }redirect/jsp?p_jsp=test/test">主页portlet测试 </a></b></q>
     </div>
 
     <!--

@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/redirect")
 public class RedirectController {
 
-	@RequestMapping(value = "redirect")
+	@RequestMapping(value = "jsp")
 	public String redirect(HttpServletRequest request) {
 		return request.getParameter("p_jsp");
 	}

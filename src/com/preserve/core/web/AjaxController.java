@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
 import com.preserve.core.interfaces.IAjaxDataBean;
@@ -21,8 +23,11 @@ import com.preserve.core.utils.spring.SpringBeanUtil;
  * 
  */
 @Controller
+@RequestMapping(value="ajax")
 public class AjaxController {
-	public String ajax(HttpServletRequest request, HttpServletResponse response)
+	
+	@RequestMapping(value="portlet",method=RequestMethod.POST)
+	public String portlet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		response.setContentType("application/jsonp");
 		response.setCharacterEncoding("utf-8");
