@@ -9,7 +9,7 @@
 			var portlet = $(item), key = portlet.attr(DATA_PORTLET);
 			options[index] = {};
 			options[index]['key'] = key;
-			options[index]['data'] = [];
+			// options[index]['data'] = [];
 		});
 		window.ko_portlet = new PRESERVE.tmpl(options);
 		ko.applyBindings(ko_portlet);
@@ -55,7 +55,7 @@
 		// 绑定数据
 		this.bindOptions = function(options) {
 			for ( var i in options) {
-				this[options[i].key] = ko.observableArray(options[i].data);
+				this[options[i].key] = ko.observableArray();
 			}
 		};
 

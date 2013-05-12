@@ -1,4 +1,4 @@
-package com.preserve.core.interfaces;
+package com.preserve.core.service;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -17,10 +17,9 @@ public class UserController {
 	@Resource UserService userService;
 	
 	@RequestMapping(value="create",method = RequestMethod.POST)
-	public String create(User u) {
+	public String create(User u) throws Exception {
 //		add
 		userService.save(u);
-		
 		return "user/login";
 	}
 	
