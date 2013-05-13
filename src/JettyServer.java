@@ -5,11 +5,12 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class JettyServer {
 public static void main(String[] args) throws Exception {
+	
 		int port = 8083; // 端口号
 		String contextPath = "/preserve"; // 上下文路径
 		System.out.println(contextPath + " running");
 		//String resourceBase = "I:\\ekp\\ekp"; // web工程目录
-		String resourceBase = "H:\\github_home\\preserve_n\\WebContent"; // web工程目录
+		String resourceBase = "E:\\git\\preserve\\WebContent"; // web工程目录
 		long max_age = 3600 * 24 * 365 * 10;
 		try {
 			Server server = new Server();

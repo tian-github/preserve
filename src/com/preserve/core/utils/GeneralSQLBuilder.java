@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.sql.Types;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -22,6 +23,7 @@ import com.preserve.core.annotation.IDStrategy;
 import com.preserve.core.annotation.Id;
 import com.preserve.core.annotation.Table;
 import com.preserve.core.vo.IDEntry;
+import com.preserve.core.vo.ModelFieldVo;
 import com.preserve.core.vo.ModelInfo;
 
 public class GeneralSQLBuilder {
@@ -86,7 +88,7 @@ public class GeneralSQLBuilder {
 		boolean first = true;
 		for (String f_key : mf.getFieldMappings().keySet()) {
 
-			String f_value = mf.getFieldMappings().get(f_key);
+			String f_value = mf.getFieldMappings().get(f_key).getName();
 
 			if (!f_key.equals(key)) {
 				if (first) {
@@ -114,7 +116,7 @@ public class GeneralSQLBuilder {
 			key = mf.getIdEntry().getKey();
 
 			sql = sql.replace("!{tb}", tb)
-					.replace("!{key}", mf.getIdEntry().getValue())
+					.replace("!{key}", mf.getIdEntry().getValue().getName())
 					.replace("!{value}", key);
 			return sql;
 		} else {
@@ -179,7 +181,13 @@ public class GeneralSQLBuilder {
 					if (StringUtils.isEmpty(name)) {
 						name = parseHump(f_name);
 					}
-					IDEntry entry = new IDEntry(f_name, name);
+
+					int id_len = id.length();
+					boolean notNull = id.notNull();
+					int dt = id.dataType();
+
+					IDEntry entry = new IDEntry(f_name, new ModelFieldVo(name,
+							notNull, id_len, dt));
 					// 子类优先
 					if (mf.getIdEntry() == null) {
 						mf.setIdEntry(entry);
@@ -187,18 +195,24 @@ public class GeneralSQLBuilder {
 					}
 					// 子类优先
 					if (!mf.getFieldMappings().containsKey(f_name)) {
-						mf.addFieldMapping(f_name, name);
+						mf.addFieldMapping(f_name, new ModelFieldVo(name,
+								notNull, id_len, dt));
 					}
 
 				}
 				if (f.isAnnotationPresent(Column.class)) {
 					Column column = f.getAnnotation(Column.class);
 					String name = column.name();
+					int id_len = column.length();
+					boolean notNull = column.notNull();
+					int dt = column.dataType();
+
 					if (StringUtils.isEmpty(name)) {
 						name = parseHump(f_name);
 					}
 					if (!mf.getFieldMappings().containsKey(f_name)) {
-						mf.addFieldMapping(f_name, name);
+						mf.addFieldMapping(f_name, new ModelFieldVo(name,
+								notNull, id_len, dt));
 					}
 				}
 
@@ -206,7 +220,8 @@ public class GeneralSQLBuilder {
 						.isAnnotationPresent(Id.class))) {
 					String name = parseHump(f_name);
 					if (!mf.getFieldMappings().containsKey(f_name)) {
-						mf.addFieldMapping(f_name, name);
+						mf.addFieldMapping(f_name, new ModelFieldVo(name, true,
+								50, Types.VARCHAR));
 					}
 				}
 
@@ -254,9 +269,9 @@ public class GeneralSQLBuilder {
 				"DROP TABLE IF EXISTS `%s`;"
 						+ "CREATE TABLE `%s` (\n %s) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
-		Map<String, String> fields = mf.getFieldMappings();
+		Map<String, ModelFieldVo> fields = mf.getFieldMappings();
 
-		String value = mf.getIdEntry().getValue();
+		String value = mf.getIdEntry().getValue().getName();
 		String idKey = mf.getIdEntry().getKey();
 
 		StringBuffer buffer = new StringBuffer("");
@@ -270,8 +285,21 @@ public class GeneralSQLBuilder {
 					buffer.append(" ,\n ");
 				}
 
-				String attr = "`!{field}` varchar(50) NOT NULL".replace(
-						"!{field}", fields.get(key));
+				String s_len = fields.get(key).getDataType() == Types.TIMESTAMP
+						|| fields.get(key).getDataType() == Types.LONGNVARCHAR ? " "
+						: "(" + fields.get(key).getLength() + ")";
+
+				String attr = "`!{field}` !{dataType} !{length} !{isNull}"
+						.replace("!{field}", fields.get(key).getName())
+						.replace(
+								"!{dataType}",
+								SQLTypeMapper.getMySqlMapper(fields.get(key)
+										.getDataType()))
+						.replace("!{length}", s_len)
+						.replace(
+								"!{isNull}",
+								fields.get(key).isNotNull() ? "NOT NULL"
+										: "NULL");
 				buffer.append(attr);
 			}
 		}
@@ -285,7 +313,7 @@ public class GeneralSQLBuilder {
 		return String.format(buffer_total.toString(), mf.getTableName(),
 				mf.getTableName(), buffer.toString());
 	}
-	
+
 	/**
 	 * 从包package中获取所有的Class
 	 * 
@@ -304,8 +332,8 @@ public class GeneralSQLBuilder {
 		// 定义一个枚举的集合 并进行循环来处理这个目录下的things
 		Enumeration<URL> dirs;
 		try {
-			dirs = Thread.currentThread().getContextClassLoader().getResources(
-					packageDirName);
+			dirs = Thread.currentThread().getContextClassLoader()
+					.getResources(packageDirName);
 			// 循环迭代下去
 			while (dirs.hasMoreElements()) {
 				// 获取下一个元素
@@ -357,8 +385,8 @@ public class GeneralSQLBuilder {
 											&& !entry.isDirectory()) {
 										// 去掉后面的".class" 获取真正的类名
 										String className = name.substring(
-												packageName.length() + 1, name
-														.length() - 6);
+												packageName.length() + 1,
+												name.length() - 6);
 										try {
 											// 添加到classes
 											classes.add(Class
@@ -385,7 +413,7 @@ public class GeneralSQLBuilder {
 
 		return classes;
 	}
-	
+
 	/**
 	 * 以文件的形式来获取包下的所有Class
 	 * 
@@ -415,19 +443,21 @@ public class GeneralSQLBuilder {
 		for (File file : dirfiles) {
 			// 如果是目录 则继续扫描
 			if (file.isDirectory()) {
-				findAndAddClassesInPackageByFile(packageName + "."
-						+ file.getName(), file.getAbsolutePath(), recursive,
-						classes);
+				findAndAddClassesInPackageByFile(
+						packageName + "." + file.getName(),
+						file.getAbsolutePath(), recursive, classes);
 			} else {
 				// 如果是java类文件 去掉后面的.class 只留下类名
 				String className = file.getName().substring(0,
 						file.getName().length() - 6);
 				try {
 					// 添加到集合中去
-					//classes.add(Class.forName(packageName + '.' + className));
-                                         //经过回复同学的提醒，这里用forName有一些不好，会触发static方法，没有使用classLoader的load干净
-                                        classes.add(Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));  
-                               } catch (ClassNotFoundException e) {
+					// classes.add(Class.forName(packageName + '.' +
+					// className));
+					// 经过回复同学的提醒，这里用forName有一些不好，会触发static方法，没有使用classLoader的load干净
+					classes.add(Thread.currentThread().getContextClassLoader()
+							.loadClass(packageName + '.' + className));
+				} catch (ClassNotFoundException e) {
 					// log.error("添加用户自定义视图类错误 找不到此类的.class文件");
 					e.printStackTrace();
 				}
@@ -436,15 +466,15 @@ public class GeneralSQLBuilder {
 	}
 
 	public static void main(String[] args) {
-//			double s=808.27+23.95+40;
-//			System.out.println(s);
-		
-		Set<Class<?>> clazzs=	getClasses("com.preserve.blog.model");
-		StringBuffer buffer=new StringBuffer();
-		for(Class clazz:clazzs){
-			
+		// double s=808.27+23.95+40;
+		// System.out.println(s);
+
+		Set<Class<?>> clazzs = getClasses("com.preserve.blog.model");
+		StringBuffer buffer = new StringBuffer();
+		for (Class clazz : clazzs) {
+
 			ModelInfo mf = parseModelInfo(clazz);
-			String sql =createTableSQL(mf);
+			String sql = createTableSQL(mf);
 			buffer.append(sql);
 			buffer.append("\n\n");
 		}

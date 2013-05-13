@@ -1,5 +1,8 @@
 package com.preserve.blog.model;
 
+import java.sql.Types;
+
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -13,6 +16,7 @@ public class Link extends BaseModel {
 	/**
 	 * 排序号
 	 */
+	@Column(dataType=Types.INTEGER)
 	protected Integer orderNum;
 	
 	/**
@@ -32,6 +36,7 @@ public class Link extends BaseModel {
 	/**
 	 * 链接URL
 	 */
+	@Column(length=500)
 	protected String linkUrl;
 	
 	/**
@@ -70,6 +75,7 @@ public class Link extends BaseModel {
 	/**
 	 * 链接图标
 	 */
+	@Column(length=500)
 	protected String linkImage;
 	
 	/**
@@ -89,6 +95,7 @@ public class Link extends BaseModel {
 	/**
 	 * 链接描述
 	 */
+	@Column(length=500)
 	protected String linkDescription;
 	
 	/**
@@ -108,16 +115,15 @@ public class Link extends BaseModel {
 	/**
 	 * 创建者
 	 */
-	protected int linkCreator;
+	@Column(dataType=Types.INTEGER)
+	protected long linkCreator;
 
-	public int getLinkCreator() {
+	public long getLinkCreator() {
 		return linkCreator;
 	}
 
-	public void setLinkCreator(int linkCreator) {
+	public void setLinkCreator(long linkCreator) {
 		this.linkCreator = linkCreator;
 	}
-	
 
-	
 }

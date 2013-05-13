@@ -1,7 +1,10 @@
 package com.preserve.blog.model;
 
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Date;
 
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -34,25 +37,13 @@ public class Comments extends BaseModel {
 	/**
 	 * 创建时间
 	 */
-	protected Date createTime;
-	
-	/**
-	 * @return 创建时间
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-	
-	/**
-	 * @param createTime 创建时间
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+	@Column(dataType=Types.TIMESTAMP)
+	protected Timestamp createTime;
 	
 	/**
 	 * 评论内容
 	 */
+	@Column(dataType=Types.LONGNVARCHAR)
 	protected String commentContent;
 	
 	/**
@@ -72,20 +63,25 @@ public class Comments extends BaseModel {
 	/**
 	 * 所属博客ID
 	 */
-	protected String fdPostId;
-	
-	/**
-	 * @return 所属博客ID
-	 */
-	public String getFdPostId() {
+	@Column(dataType=Types.INTEGER)
+	protected long fdPostId;
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public long getFdPostId() {
 		return fdPostId;
 	}
-	
-	/**
-	 * @param fdPostId 所属博客ID
-	 */
-	public void setFdPostId(String fdPostId) {
+
+	public void setFdPostId(long fdPostId) {
 		this.fdPostId = fdPostId;
 	}
+	
+
 	
 }

@@ -1,5 +1,8 @@
 package com.preserve.blog.model;
 
+import java.sql.Types;
+
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -10,9 +13,13 @@ import com.preserve.core.model.BaseModel;
  */
 public class PostsMeta extends BaseModel {
 
+	@Column(dataType=Types.INTEGER)
+	protected long postsId;
+	
 	/**
 	 * key
 	 */
+	@Column(length=500)
 	protected String metaKey;
 	
 	/**
@@ -32,6 +39,7 @@ public class PostsMeta extends BaseModel {
 	/**
 	 * value
 	 */
+	@Column(length=500)
 	protected String metaValue;
 	
 	/**
@@ -47,5 +55,14 @@ public class PostsMeta extends BaseModel {
 	public void setMetaValue(String metaValue) {
 		this.metaValue = metaValue;
 	}
+
+	public long getPostsId() {
+		return postsId;
+	}
+
+	public void setPostsId(long postsId) {
+		this.postsId = postsId;
+	}
+	
 	
 }

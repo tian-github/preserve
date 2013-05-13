@@ -1,5 +1,8 @@
 package com.preserve.blog.model;
 
+import java.sql.Types;
+
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -13,6 +16,7 @@ public class Tags extends BaseModel {
 	/**
 	 * 排序号
 	 */
+	@Column(dataType=Types.INTEGER)
 	protected Integer orderNum;
 	
 	/**
@@ -51,6 +55,7 @@ public class Tags extends BaseModel {
 	/**
 	 * 标签图标
 	 */
+	@Column(length=500)
 	protected String tagImg;
 	
 	/**
@@ -70,20 +75,15 @@ public class Tags extends BaseModel {
 	/**
 	 * 创建者
 	 */
-	protected Users docCreator;
-	
-	/**
-	 * @return 创建者
-	 */
-	public Users getDocCreator() {
-		return docCreator;
+	@Column(dataType=Types.INTEGER)
+	protected long creatorId;
+
+	public long getCreatorId() {
+		return creatorId;
 	}
-	
-	/**
-	 * @param docCreator 创建者
-	 */
-	public void setDocCreator(Users docCreator) {
-		this.docCreator = docCreator;
+
+	public void setCreatorId(long creatorId) {
+		this.creatorId = creatorId;
 	}
 	
 }

@@ -1,7 +1,9 @@
 package com.preserve.blog.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.sql.Types;
 
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -15,6 +17,7 @@ public class Posts extends BaseModel {
 	/**
 	 * 排序号
 	 */
+	@Column(dataType=Types.INTEGER)
 	protected Integer orderNum;
 	
 	/**
@@ -53,40 +56,16 @@ public class Posts extends BaseModel {
 	/**
 	 * 发布时间
 	 */
-	protected Date publishTime;
+	@Column(dataType=Types.TIMESTAMP)
+	protected Timestamp publishTime;
 	
-	/**
-	 * @return 发布时间
-	 */
-	public Date getPublishTime() {
-		return publishTime;
-	}
-	
-	/**
-	 * @param publishTime 发布时间
-	 */
-	public void setPublishTime(Date publishTime) {
-		this.publishTime = publishTime;
-	}
 	
 	/**
 	 * 创建时间
 	 */
-	protected Date createTime;
+	@Column(dataType=Types.TIMESTAMP)
+	protected Timestamp createTime;
 	
-	/**
-	 * @return 创建时间
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-	
-	/**
-	 * @param createTime 创建时间
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 	
 	/**
 	 * 文档状态
@@ -110,6 +89,7 @@ public class Posts extends BaseModel {
 	/**
 	 * 博客内容
 	 */
+	@Column(dataType=Types.LONGNVARCHAR)
 	protected String postContent;
 	
 	/**
@@ -148,6 +128,7 @@ public class Posts extends BaseModel {
 	/**
 	 * 摘要
 	 */
+	@Column(dataType=Types.LONGNVARCHAR)
 	protected String postExcerpt;
 	
 	/**
@@ -186,57 +167,64 @@ public class Posts extends BaseModel {
 	/**
 	 * 最后修改时间
 	 */
-	protected Date alterTime;
+	@Column(dataType=Types.TIMESTAMP)
+	protected Timestamp alterTime;
 	
-	/**
-	 * @return 最后修改时间
-	 */
-	public Date getAlterTime() {
-		return alterTime;
-	}
 	
-	/**
-	 * @param alterTime 最后修改时间
-	 */
-	public void setAlterTime(Date alterTime) {
-		this.alterTime = alterTime;
-	}
 	
 	/**
 	 * 作者
 	 */
-	protected Users docAuthor;
+	@Column(dataType=Types.INTEGER)
+	protected long authorId;
 	
-	/**
-	 * @return 作者
-	 */
-	public Users getDocAuthor() {
-		return docAuthor;
-	}
 	
-	/**
-	 * @param docAuthor 作者
-	 */
-	public void setDocAuthor(Users docAuthor) {
-		this.docAuthor = docAuthor;
-	}
 	
 	/**
 	 * 所属分类
 	 */
-	protected Category docCategory;
-	
-	/**
-	 * @return 所属分类
-	 */
-	public Category getDocCategory() {
-		return docCategory;
+	@Column(dataType=Types.INTEGER)
+	protected long categoryId;
+
+	public Timestamp getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(Timestamp publishTime) {
+		this.publishTime = publishTime;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Timestamp getAlterTime() {
+		return alterTime;
+	}
+
+	public void setAlterTime(Timestamp alterTime) {
+		this.alterTime = alterTime;
+	}
+
+	public long getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(long authorId) {
+		this.authorId = authorId;
+	}
+
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
-	/**
-	 * @param docCategory 所属分类
-	 */
-	public void setDocCategory(Category docCategory) {
-		this.docCategory = docCategory;
-	}
+	
 }

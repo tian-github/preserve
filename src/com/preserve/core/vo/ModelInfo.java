@@ -12,14 +12,14 @@ public class ModelInfo {
 	private IDEntry idEntry;
 	private int idStrategy = IDStrategy.IN_CREMENT;// 默认自增
 
-	private Map<String, String> fieldMappings = new HashMap<String, String>();
+	private Map<String, ModelFieldVo> fieldMappings = new HashMap<String, ModelFieldVo>();
 
-	public ModelInfo addFieldMapping(String key, String value) {
+	public ModelInfo addFieldMapping(String key, ModelFieldVo value) {
 		fieldMappings.put(key, value);
 		return this;
 	}
 
-	public ModelInfo addFieldMapping(Map<String, String> paramMap) {
+	public ModelInfo addFieldMapping(Map<String, ModelFieldVo> paramMap) {
 		fieldMappings.putAll(paramMap);
 		return this;
 	}
@@ -60,13 +60,12 @@ public class ModelInfo {
 		return this;
 	}
 
-	public Map<String, String> getFieldMappings() {
+	public Map<String, ModelFieldVo> getFieldMappings() {
 		return fieldMappings;
 	}
 
-	public ModelInfo setFieldMappings(Map<String, String> fieldMappings) {
+	public void setFieldMappings(Map<String, ModelFieldVo> fieldMappings) {
 		this.fieldMappings = fieldMappings;
-		return this;
 	}
 
 	public boolean hasIdColumn() {

@@ -1,7 +1,10 @@
 package com.preserve.blog.model;
 
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Date;
 
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -15,6 +18,7 @@ public class Users extends BaseModel {
 	/**
 	 * 登录名
 	 */
+	@Column(notNull=true,length=50)
 	protected String userLogin;
 	
 	/**
@@ -34,6 +38,7 @@ public class Users extends BaseModel {
 	/**
 	 * 密码
 	 */
+	@Column(notNull=true,length=50)
 	protected String userPwd;
 	
 	/**
@@ -91,25 +96,23 @@ public class Users extends BaseModel {
 	/**
 	 * 创建时间
 	 */
-	protected Date createTime;
+	@Column(notNull=true,dataType=Types.TIMESTAMP)
+	protected Timestamp createTime;
 	
-	/**
-	 * @return 创建时间
-	 */
-	public Date getCreateTime() {
+
+	
+	public Timestamp getCreateTime() {
 		return createTime;
 	}
-	
-	/**
-	 * @param createTime 创建时间
-	 */
-	public void setCreateTime(Date createTime) {
+
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
-	
+
 	/**
 	 * 用户状态
 	 */
+	@Column(notNull=true,length=10)
 	protected String userStatus;
 	
 	/**
@@ -129,6 +132,7 @@ public class Users extends BaseModel {
 	/**
 	 * 主页地址
 	 */
+	@Column(notNull=true,length=500)
 	protected String userUrl;
 	
 	/**

@@ -1,11 +1,14 @@
 package com.preserve.blog.model;
 
+import java.sql.Types;
+
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
  * 标签博文
  * 
- * @author 
+ * @author
  * @version 1.0 2013-05-08
  */
 public class PostsTags extends BaseModel {
@@ -13,39 +16,29 @@ public class PostsTags extends BaseModel {
 	/**
 	 * 标签id
 	 */
-	protected Tags fdTag;
-	
-	/**
-	 * @return 标签id
-	 */
-	public Tags getFdTag() {
-		return fdTag;
-	}
-	
-	/**
-	 * @param fdTag 标签id
-	 */
-	public void setFdTag(Tags fdTag) {
-		this.fdTag = fdTag;
-	}
-	
+	@Column(dataType = Types.INTEGER)
+	protected long fdTagId;
+
 	/**
 	 * 博客id
 	 */
-	protected Posts fdPost;
-	
-	/**
-	 * @return 博客id
-	 */
-	public Posts getFdPost() {
-		return fdPost;
+	@Column(dataType = Types.INTEGER)
+	protected long fdPostId;
+
+	public long getFdTagId() {
+		return fdTagId;
 	}
-	
-	/**
-	 * @param fdPost 博客id
-	 */
-	public void setFdPost(Posts fdPost) {
-		this.fdPost = fdPost;
+
+	public void setFdTagId(long fdTagId) {
+		this.fdTagId = fdTagId;
 	}
-	
+
+	public long getFdPostId() {
+		return fdPostId;
+	}
+
+	public void setFdPostId(long fdPostId) {
+		this.fdPostId = fdPostId;
+	}
+
 }

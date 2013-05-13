@@ -2,17 +2,11 @@ package com.preserve.core.vo;
 
 import java.util.Map.Entry;
 
-public class IDEntry implements Entry<String,String> {
+public class IDEntry implements Entry<String, ModelFieldVo> {
 
 	private String key;
-	
-	private String value ;
-	
-	public IDEntry(String key, String value) {
-		super();
-		this.key = key;
-		this.value = value;
-	}
+
+	private ModelFieldVo value;
 
 	@Override
 	public String getKey() {
@@ -21,18 +15,21 @@ public class IDEntry implements Entry<String,String> {
 	}
 
 	@Override
-	public String getValue() {
+	public ModelFieldVo getValue() {
 		// TODO Auto-generated method stub
 		return value;
 	}
 
 	@Override
-	public String setValue(String paramV) {
+	public ModelFieldVo setValue(ModelFieldVo value) {
 		// TODO Auto-generated method stub
-		this.value=paramV;
-		return this.value;
+		return value;
 	}
-	
 
+	public IDEntry(String key, ModelFieldVo value) {
+		super();
+		this.key = key;
+		this.value = value;
+	}
 
 }

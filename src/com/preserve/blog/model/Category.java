@@ -1,7 +1,9 @@
 package com.preserve.blog.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.sql.Types;
 
+import com.preserve.core.annotation.Column;
 import com.preserve.core.model.BaseModel;
 
 /**
@@ -15,6 +17,7 @@ public class Category extends BaseModel {
 	/**
 	 * 排序号
 	 */
+	@Column(dataType=Types.INTEGER)
 	protected Integer orderNum;
 	
 	/**
@@ -34,16 +37,9 @@ public class Category extends BaseModel {
 	/**
 	 * 创建时间
 	 */
-	protected Date createTime;
+	@Column(dataType=Types.TIMESTAMP)
+	protected Timestamp createTime;
 	
-	
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 
 	/**
 	 * 名称
@@ -67,6 +63,10 @@ public class Category extends BaseModel {
 	/**
 	 * 创建者
 	 */
-	protected int creator;
+	@Column(dataType=Types.INTEGER)
+	protected long creatorId;
+	
+	@Column(dataType=Types.INTEGER)
+	protected long parentId;
 	
 }
