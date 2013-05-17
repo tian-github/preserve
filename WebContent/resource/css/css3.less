@@ -1,0 +1,58 @@
+/*Բ��*/
+.border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+/*�Ľǵİ뾶����*/
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+    -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+    -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+    border-radius: @topleft @topright @bottomright @bottomleft;
+}
+
+/*��Ӱ��x�ᣬy�ᣬ��Ӱ�뾶����ɫ��*/
+.box-shadow (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
+    -webkit-box-shadow:  @x @y @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow:  @x @y @blur rgba(0, 0, 0, @alpha);
+    box-shadow:  @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+/*����*/
+.transition (@prop: all, @time: 1s, @ease: linear) {
+    -webkit-transition: @prop  @time @ease;
+    -moz-transition: @prop  @time @ease;
+    -o-transition: @prop  @time @ease;
+    -ms-transition: @prop  @time @ease;
+    transition: @prop  @time @ease;
+}
+
+/*��ת���Ƕȣ����ţ���б��λ�ơ�*/
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+    -webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+
+/*��ɫ����*/
+.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
+    background-image: -webkit-linear-gradient(@origin, @start, @stop);
+    background-image: -moz-linear-gradient(@origin, @start, @stop);
+    background-image: -o-linear-gradient(@origin, @start, @stop);
+    background-image: -ms-linear-gradient(@origin, @start, @stop);
+    background-image: linear-gradient(@origin, @start, @stop);
+}
+
+/*����*/
+.animation(@name: facein, @time: 1s, @ease:linear){
+	-moz-animation:@name @time @ease;
+	-webkit-animation:@name @time @ease;
+	-o-animation:@name @time @ease;
+	-ms-animation:@name @time @ease;
+	animation:@name @time @ease;
+}
+
+

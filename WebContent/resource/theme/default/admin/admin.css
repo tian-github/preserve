@@ -1,0 +1,163 @@
+@import "../../../css/animation.less";
+
+body {
+	.animation(facein, 1s, linear);
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-family: sans-serif;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	clear: both;
+}
+
+.main {
+	float: left;
+	width: 100%;
+	height: 690px;
+	margin: 0 auto;
+	font-family: helvetica, verdana, sans-serif;
+}
+
+.main .topbar {
+	margin: 0;
+	padding: 0;
+	height: 60px;
+}
+/*topbar¶¥²¿°´Å¥À¸*/
+.topbar li {
+	float: right;
+	list-style: none;
+}
+
+.topbar li:first-child {
+	float: left;
+}
+
+.topbar a {
+	font-family: 'PT Sans Narrow', Arial, sans-serif;
+	display: block;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	text-decoration: none;
+	color: rgb(102, 102, 102);
+}
+
+.topbar li:nth-child(1) a{
+	background: url("./img/1.png") no-repeat center;
+}
+.topbar  li:nth-child(2) a{
+	background: url("./img/2.png") no-repeat center;	
+}
+.topbar li:nth-child(3) a{
+	background: url("./img/3.png") no-repeat center;	
+}
+.topbar li:nth-child(4) a{
+	background: url("./img/4.png") no-repeat center;
+}
+.topbar li:nth-child(5) a{
+	background: url("./img/5.png") no-repeat center;	
+}
+
+.topbar li:first-child a {
+	border: none;
+}
+
+.mainContent{
+	background: transparent url("./img/bg_black.png") repeat;
+	height:570px;
+	padding: 60px 60px 0 60px;
+	.border-radius-custom(0,0,10px,10px);
+}
+
+.mainContent>div {
+	width:25%;
+	height:180px;
+	float:left;
+	margin:30px 23px;
+	opacity:0.7;
+}
+
+.monitor ul {
+	float: left;
+	padding: 0;
+	margin: 0 31px 0 17px;
+}
+
+.monitor li {
+	list-style: none;
+	font: 600 14px/28px helvetica, verdana, sans-serif;
+	color: rgb(102, 102, 102);
+	text-transform: capitalize;
+}
+
+.monitor li a {
+	color: rgb(102, 102, 102);
+	text-transform: capitalize;
+	text-decoration: none;
+}
+
+.monitor .count {
+	color: rgb(27, 106, 173);
+	text-align: right;
+	font-weight: 600;
+	margin-right: 15px;
+	min-width: 25px;
+	display: inline-block;
+}
+
+.monitor p {
+	color: rgb(128, 128, 128);
+	margin: 28px 0 18px 17px;
+	display: block;
+	font-weight: 600;
+	font-size: 12px;
+}
+
+.monitor p a {
+	text-decoration: none;
+	color: rgb(27, 106, 173);
+}
+
+.mainContent div.monitor:nth-child(1){
+	.gradient (left, #000000, #CDFFCC);
+	.border-radius ();
+}
+
+.mainContent div:nth-child(2){
+	.gradient (left, #FFFFCD, #CDFFCC);
+	.transform (8deg, 1, 1deg, 0);
+	.border-radius ();
+}
+.mainContent div:nth-child(3){
+	.gradient (left, #CDFFCC, #CECCFE);
+	.transform (-5deg, 1, 1deg, 0);
+	.border-radius ();
+}
+.mainContent div:nth-child(4){
+	.gradient (left, #FFFFCD, #CDFFCC);
+	.transform (8deg, 1, 1deg, 0);
+	.border-radius ();
+}
+.mainContent div:nth-child(5){
+	.gradient (left, #CDFFCC, #CECCFE);
+	.transform (10deg, 1, 1deg, 0);
+	.border-radius ();
+}
+.mainContent div:nth-child(6){
+	.gradient (left, #CECCFE, #000000);
+	.transform (-5deg, 1, 1deg, 0);
+	.border-radius ();
+}
+
+
+.mainContent .monitor:hover{
+	.transition(all ,500ms,linear);
+	.transform (0, 1.5, 0, 0);
+}

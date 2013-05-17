@@ -1,0 +1,88 @@
+@import "../../../css/animation.less";
+
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-family: sans-serif;
+	background-color: black;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	clear: both;
+}
+
+.admin-panel {
+	width: 990px;
+	margin: 50px auto;
+}
+/*slidebar²à±ßÀ¸*/
+.slidebar {
+	width: 20%;
+	min-height: 690px;
+	float: left;
+	background: url("./img/pattern.png") repeat;
+}
+
+.slidebar .logo {
+	height: 145px;
+	border-bottom: 1px solid rgb(235, 235, 235);
+	background: url("./img/logo.jpg");
+}
+
+.slidebar ul {
+	padding: 0;
+	margin: 0;
+}
+
+.slidebar li {
+	list-style-type: none;
+	margin: 0;
+	position: relative;
+}
+
+.slidebar ul a {
+	color: white;
+	text-decoration: none;
+	font: 16px/40px helvetica, verdana, sans-serif;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-bottom: 1px solid rgb(235, 235, 235);
+	display: block;
+	box-shadow: inset 0 1px 0 rgb(255, 255, 255);
+	text-indent: 20px;
+	text-transform: capitalize;
+	.transition ( all, 500ms, linear) 
+}
+.slidebar li:hover a {
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 5px 0 0 -1px
+		rgb(234, 83, 63);
+	.transform (0, 1.3, 1deg, 0);
+}
+
+.main {
+	float: left;
+	width: 79%;
+	height: 690px;
+	font-family: helvetica, verdana, sans-serif;
+	padding-left: 4px;
+}
+
+.main iframe{
+	z-index: -1000;
+	border: none;
+}
+
+.background_img {
+	top: 0;
+	left:0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: -1000;
+	.animation(facein, 500ms, linear);
+}
