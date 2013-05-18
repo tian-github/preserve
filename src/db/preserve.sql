@@ -104,7 +104,7 @@ CREATE TABLE `permission` (
   `name` varchar(50) NOT NULL,
   `url` varchar(500) DEFAULT NULL,
   `fd_id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`fd_id`)
+  PRIMARY KEY (`fd_id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
