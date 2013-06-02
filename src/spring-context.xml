@@ -43,9 +43,9 @@
 	
 	<!-- 查询 -->
 	<bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
-		<property name="dataSource">
-		 <ref bean="dataSource"/>
-		</property>
+		<constructor-arg>
+			<ref bean="dataSource" />
+		</constructor-arg>
 	</bean>
 	
 	<bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
