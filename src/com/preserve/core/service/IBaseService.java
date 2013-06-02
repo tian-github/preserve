@@ -1,8 +1,11 @@
 package com.preserve.core.service;
 
-import com.preserve.core.dao.IBaseDao;
+import java.util.List;
 
-public interface IBaseService<M> {
+import com.preserve.core.dao.IBaseDao;
+import com.preserve.core.model.BaseModel;
+
+public interface IBaseService<M extends BaseModel> {
 
 	public Object save(M model) throws Exception;
 
@@ -11,4 +14,11 @@ public interface IBaseService<M> {
 	public void delete(M model) throws Exception;
 
 	public IBaseDao<M> getBaseDao() throws Exception;
+
+	public int getCount(String sql, Object... params) throws Exception;
+
+	public String getTableName() throws Exception;
+
+	public List<M> getAll() throws Exception;
+
 }

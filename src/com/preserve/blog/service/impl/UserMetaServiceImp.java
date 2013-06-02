@@ -2,6 +2,7 @@ package com.preserve.blog.service.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.dbutils.QueryRunner;
 import org.springframework.stereotype.Service;
 
 import com.preserve.blog.dao.IUserMetaDao;
@@ -16,17 +17,30 @@ import com.preserve.core.service.impl.BaseServiceImpl;
  * @author 
  * @version 1.0 2013-05-08
  */
-@Service(value="userMetaService")
-public class UserMetaServiceImp extends BaseServiceImpl<UserMeta> implements IUserMetaService {
+@Service(value = "userMetaService")
+public class UserMetaServiceImp extends BaseServiceImpl<UserMeta> implements
+		IUserMetaService {
 
-	
-	@Resource(name="userMetaDao")
+	@Resource(name = "userMetaDao")
 	private IUserMetaDao userMetaDao;
-	
+
+	@Resource(name = "queryRunner")
+	private QueryRunner queryRunner;
+
+	public QueryRunner getQueryRunner() {
+		return queryRunner;
+	}
+
 	@Override
 	public IBaseDao<UserMeta> getBaseDao() {
 		// TODO Auto-generated method stub
 		return userMetaDao;
 	}
+
+	//	@Override
+	//	public String getTableName() {
+	//		// TODO Auto-generated method stub
+	//		return "user_meta";
+	//	}
 
 }

@@ -17,8 +17,6 @@ package com.preserve.core.pagination;
 
 import java.util.List;
 
-import com.preserve.core.model.BaseModel;
-
 /**
  * cat Page
  *
@@ -30,89 +28,118 @@ public class Page<M> {
 
 	public static final int DEFAULTSIZE = 15;
 	private List<M> rows;
-	private int pageIndex = 1;
+	//当前页
+	private int pageIndex = 0;
+	//页数
 	private int pageCount = 0;
+	//每页行
 	private int size = 15;
+	//总行数
 	private int rowCount = 0;
-	
+	//起始行数
 	private int pageBegin = 1;
-	private int pageEnd;
-	
+
+	//	//结束页
+	//	private int pageEnd;
+
 	/**
 	 * 
 	 */
 	public Page() {
 		super();
 	}
+
 	public Page(int size) {
 		super();
 		this.size = size;
 	}
+
 	public Page(int pageIndex, int size) {
 		super();
 		this.pageIndex = pageIndex;
 		this.size = size;
 	}
+
 	public List<M> getRows() {
 		return rows;
 	}
+
 	public void setRows(List<M> rows) {
 		this.rows = rows;
 	}
+
 	public int getPageIndex() {
 		return pageIndex;
 	}
+
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+
 	public int getPageCount() {
 		return pageCount;
 	}
+
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
+
 	public int getSize() {
 		return size;
 	}
+
 	public void setSize(int size) {
 		this.size = size;
 	}
+
 	public int getRowCount() {
 		return rowCount;
 	}
+
 	public void setRowCount(int rowCount) {
 		this.rowCount = rowCount;
-		int _count = rowCount/size;
-		pageCount = (rowCount%size == 0) ? _count : (_count + 1);
+		//计算页数
+		int _count = rowCount / size;
+		pageCount = (rowCount % size == 0) ? _count : (_count + 1);
+
+		//当前页数超标最后一页
 		if (pageIndex > pageCount && pageCount != 0) {
 			pageIndex = pageCount;
 		}
-		if(pageIndex < 6) {
-			pageBegin = 1;
-			pageEnd = pageCount<10?pageCount:10;
-		} else {
-			int _end = pageIndex + 5;
-			if (pageCount > _end) {
-				pageBegin = pageIndex - 4;
-				pageEnd = _end;
-			} else {
-				int _begin = pageCount - 9;
-				pageEnd = pageCount;
-				pageBegin = _begin>1?_begin:1;
-			}
-		}
+
+		//起算起始条数
+		pageBegin = (pageIndex - 1) * size;
 	}
+
+	//	public void setRowCount(int rowCount) {
+	//		this.rowCount = rowCount;
+	//		int _count = rowCount / size;
+	//		pageCount = (rowCount % size == 0) ? _count : (_count + 1);
+	//		if (pageIndex > pageCount && pageCount != 0) {
+	//			pageIndex = pageCount;
+	//		}
+	//		if (pageIndex < 6) {
+	//			pageBegin = 1;
+	//			pageEnd = pageCount < 10 ? pageCount : 10;
+	//		} else {
+	//			int _end = pageIndex + 5;
+	//			if (pageCount > _end) {
+	//				pageBegin = pageIndex - 4;
+	//				pageEnd = _end;
+	//			} else {
+	//				int _begin = pageCount - 9;
+	//				pageEnd = pageCount;
+	//				pageBegin = _begin > 1 ? _begin : 1;
+	//			}
+	//		}
+	//	}
+
 	public int getPageBegin() {
 		return pageBegin;
 	}
+
 	public void setPageBegin(int pageBegin) {
 		this.pageBegin = pageBegin;
 	}
-	public int getPageEnd() {
-		return pageEnd;
-	}
-	public void setPageEnd(int pageEnd) {
-		this.pageEnd = pageEnd;
-	}
-	
+
 }

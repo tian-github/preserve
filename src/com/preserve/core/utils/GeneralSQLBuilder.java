@@ -17,7 +17,6 @@ import java.util.jar.JarFile;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.preserve.blog.model.Posts;
 import com.preserve.core.annotation.Column;
 import com.preserve.core.annotation.IDStrategy;
 import com.preserve.core.annotation.Id;
@@ -123,6 +122,20 @@ public class GeneralSQLBuilder {
 			// 空主键update需要额外写
 			return null;
 		}
+
+	}
+
+	public static String getTableName(Class<?> model) {
+		String tbName = null;
+		String className = model.getSimpleName();
+		if (model.isAnnotationPresent(Table.class)) {
+			Table tb = (Table) model.getAnnotation(Table.class);
+			tbName = tb.name();
+		}
+		if (StringUtils.isEmpty(tbName)) {
+			tbName = parseHump(className);
+		}
+		return tbName;
 
 	}
 

@@ -75,4 +75,25 @@ public class ModelInfo {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @description TODO
+	 * @return
+	 */
+	public Map<String, String> toSimpleMap() {
+		Map<String, String> s_map = new HashMap<String, String>();
+
+		if (idEntry != null) {
+			s_map.put(idEntry.getKey(), idEntry.getValue().getName());
+		}
+
+		for (String s : fieldMappings.keySet()) {
+			ModelFieldVo mv = fieldMappings.get(s);
+			String dbName = mv.getName();
+			s_map.put(s, dbName);
+		}
+		return s_map;
+
+	}
+
 }

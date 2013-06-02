@@ -10,7 +10,7 @@
 
 	<mvc:default-servlet-handler />
 
-	<context:component-scan base-package="com.preserve.core,com.preserve.test">
+	<context:component-scan base-package="com.preserve.core,com.preserve.blog">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!-- 扫描controller 可以配置多个包 DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter分别处理类级别和 

@@ -23,10 +23,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.preserve.core.utils.spring.SpringBeanUtil;
-import com.preserve.test.model.User;
-import com.preserve.test.service.impl.UserService;
-
 /**
  * cat StartupListener
  *
@@ -35,44 +31,45 @@ import com.preserve.test.service.impl.UserService;
  * @since 
  */
 public class StartupListener implements ServletContextListener {
-	
+
 	private static Logger log = Logger.getLogger(StartupListener.class);
 
-    private ServletContext context;
-    private ApplicationContext ctx;
-    
+	private ServletContext context;
+	private ApplicationContext ctx;
+
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-    public void contextInitialized(ServletContextEvent sce) {
-        ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
-//        UserService service=(UserService)ctx.getBean("userService");
-//        User u =new User();
-//        u.setName("test1");
-//        u.setPwd("12312");
-//        service.save(u);
-        
-//        appDao = ctx.getBean(AppDao.class);
-//        tagDao = ctx.getBean(TagDao.class);
-//        appCache = ctx.getBean("appCache", Map.class);
-//        loadAppConfig();
-//        loadTags();
-//        loadSkinMessage();
-//        loadSkins();
-        setWebProperty();
-    }
-	
-	
-    private void setWebProperty() {
-        setAttribute("contextPath", context.getContextPath());
-    }
+	public void contextInitialized(ServletContextEvent sce) {
+		ctx = WebApplicationContextUtils
+				.getRequiredWebApplicationContext(context = sce
+						.getServletContext());
+		//        UserService service=(UserService)ctx.getBean("userService");
+		//        User u =new User();
+		//        u.setName("test1");
+		//        u.setPwd("12312");
+		//        service.save(u);
 
-    private void setAttribute(String key, Object value) {
-        context.setAttribute(key, value);
-        log.info("ServletContext add " + key + ":" + value);
-    }
+		//        appDao = ctx.getBean(AppDao.class);
+		//        tagDao = ctx.getBean(TagDao.class);
+		//        appCache = ctx.getBean("appCache", Map.class);
+		//        loadAppConfig();
+		//        loadTags();
+		//        loadSkinMessage();
+		//        loadSkins();
+		setWebProperty();
+	}
+
+	private void setWebProperty() {
+		setAttribute("contextPath", context.getContextPath());
+	}
+
+	private void setAttribute(String key, Object value) {
+		context.setAttribute(key, value);
+		log.info("ServletContext add " + key + ":" + value);
+	}
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)

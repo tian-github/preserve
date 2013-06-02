@@ -1,7 +1,10 @@
 package com.preserve.blog.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.dbutils.QueryRunner;
 import org.springframework.stereotype.Service;
 
 import com.preserve.blog.dao.IUsersDao;
@@ -23,10 +26,40 @@ public class UsersServiceImp extends BaseServiceImpl<Users> implements
 	@Resource(name = "usersDao")
 	private IUsersDao usersDao;
 
+	@Resource(name = "queryRunner")
+	private QueryRunner queryRunner;
+
 	@Override
 	public IBaseDao<Users> getBaseDao() {
 		// TODO Auto-generated method stub
 		return usersDao;
+	}
+
+	//	@Override
+	//	public List<Users> getAll() throws Exception {
+	//		// TODO Auto-generated method stub
+	////		BeanListHandler<T>
+	////		ResultSetHandler<T>
+	//		
+	//		
+	//		queryRunner.query(sql, rsh)
+	//		return null;
+	//	}
+
+	//	@Override
+	//	public String getTableName() {
+	//		// TODO Auto-generated method stub
+	//		return "users";
+	//	}
+
+	@Override
+	public List<Users> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public QueryRunner getQueryRunner() {
+		return queryRunner;
 	}
 
 }
